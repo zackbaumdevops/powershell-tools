@@ -1,0 +1,13 @@
+function Start-WinRMService {
+    param (
+        [Parameter(Mandatory=$true)]
+        [string[]]$ComputerNames
+    )
+
+    foreach ($ComputerName in $ComputerNames) {
+        $encodedCommand = [Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes("Get-WmiObject -ComputerName '$ComputerName' -Class Win32_Service -Filter ""Name='winrm'"" | ForEach-Object { `$_.StartService() }"))
+        $startProcessArgs = "-NoExit", "-Command", "Invoke-Expression -Command ([System.Text.Encoding]::Unicode.GetString([Convert]::FromBase64String('$encodedCommand')))"
+
+        Start-Process -FilePath "powershell.exe" -ArgumentList $startProcessArgs
+    }
+}

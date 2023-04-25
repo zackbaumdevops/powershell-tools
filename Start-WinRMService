@@ -1,5 +1,5 @@
-# This function was specifically implemented to invoke WMI objects incompatible with future versions of Powershell Core 5+
-# which are incompatible with WMI objects commonly utilized in Windows Powershell 5.1. This function shortcuts this issue
+# This function was specifically implemented to interface WinRM Win32_Service objects with a Powershell Core session
+# which are typically incompatible with WMI objects commonly utilized in Windows Powershell 5.1. This function shortcuts this issue
 # by passing the WmiObject command through as a Base64 string and then executes it within a Windows Powershell 5.1 window
 # and can be invoked against a ComputerNames (string array). Calling the service in the typical manner against a remote session
 # using Powershell Core is normally impossible due to its inability to remotely call the service's WMI properties.

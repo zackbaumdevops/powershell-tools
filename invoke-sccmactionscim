@@ -1,3 +1,5 @@
+# This is a script block which can be used to trigger SCCM update schedules against a remote client. More guidKey strings are available on Microsoft's Documentation.
+
 function Invoke-SccmActionsCim{
     $guidTable = @{
         '{00000000-0000-0000-0000-000000000001}' = 'Hardware Inventory'

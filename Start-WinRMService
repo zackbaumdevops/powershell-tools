@@ -1,3 +1,7 @@
+# This function was specifically implemented to invoke WMI objects incompatible with future versions of Powershell Core 5+
+# which are incompatible with WMI objects commonly utilized in Windows Powershell 5.1 this function calls Windows Powershell 5.1 and
+# uses a Base64 string to pass the Start-WinRM commands /c to a Powershell 5.1 which is normally impossible due to the prevalence of nested quotes 
+
 function Start-WinRMService {
     param (
         [Parameter(Mandatory=$true)]
